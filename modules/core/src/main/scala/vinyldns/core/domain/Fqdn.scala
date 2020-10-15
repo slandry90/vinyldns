@@ -29,10 +29,6 @@ case class Fqdn(fqdn: String) {
 
   def matches(value: String): Boolean =
     // fqdns always are absolute / trailing dot
-    val logger = LoggerFactory.getLogger("FQDN")
-    logger.info(value)
-    logger.info(fqdn.toLowerCase)
-    logger.info(fqdn.dropRight(1).toLowerCase)
     if (value.endsWith(".")) value.toLowerCase == fqdn.toLowerCase
     else value.toLowerCase == fqdn.dropRight(1).toLowerCase
 

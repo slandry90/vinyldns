@@ -28,7 +28,7 @@ import vinyldns.core.domain.record.{NSData, RecordData, RecordSet, RecordSetStat
 import vinyldns.core.domain.record.RecordType.RecordType
 import vinyldns.core.domain.record.RecordType._
 import vinyldns.core.domain.zone.Zone
-
+import org.slf4j.LoggerFactory
 import scala.collection.JavaConverters._
 
 trait Route53Conversions {
@@ -70,6 +70,9 @@ trait Route53Conversions {
       r53RecordSet: ResourceRecordSet
   ): RecordSet = {
     val typ = toVinylRecordType(RRType.fromValue(r53RecordSet.getType))
+    val logger = LoggerFactory.getLogger("toVinylRecordSet")
+    logger.info(r53RecordSet.getName)
+    logger.info(zoneName)
     RecordSet(
       zoneId,
       Fqdn.merge(r53RecordSet.getName, zoneName).zoneRecordName(zoneName),
