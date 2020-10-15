@@ -22,7 +22,7 @@ import vinyldns.api.Interfaces._
 import vinyldns.core.domain.backend.{Backend, BackendResolver}
 import vinyldns.core.domain.record.RecordType
 import vinyldns.core.domain.zone.Zone
-
+import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 import scala.util.matching.Regex
 
@@ -43,6 +43,9 @@ class ZoneConnectionValidator(backendResolver: BackendResolver, approvedNameServ
     DnsZoneViewLoader(zone, backendResolver.resolve(zone)).load()
 
   def hasApexNS(zoneView: ZoneView): Result[Unit] = {
+    val logger = LoggerFactory.getLogger("hasApexNS")
+    logger.info(zoneView.toString)
+    logger.info(zoneView.recordSetsMap.get(zoneView.zone.name, RecordType.NS).toString)
     val apexRecord = zoneView.recordSetsMap.get(zoneView.zone.name, RecordType.NS) match {
       case Some(ns) => containsApprovedNameServers(approvedNameServers, ns)
       case None => "Missing apex NS record".invalidNel

@@ -1,9 +1,9 @@
 FROM hseeberger/scala-sbt:11.0.8_1.3.13_2.11.12 as builder
 
-ARG BRANCH=master
-ARG VINYLDNS_VERSION
+ARG BRANCH=r53-testing
+ARG VINYLDNS_VERSION=steve-80
 
-RUN git clone -b ${BRANCH} --single-branch --depth 1 https://github.com/vinyldns/vinyldns.git /vinyldns
+RUN git clone -b ${BRANCH} --single-branch --depth 1 https://github.com/slandry90/vinyldns.git /vinyldns
 
 # The default jvmopts are huge, meant for running everything, use a paired down version
 COPY .jvmopts /vinyldns
@@ -17,7 +17,6 @@ RUN apk add --update --no-cache netcat-openbsd bash
 COPY --from=builder /vinyldns/modules/api/target/universal/stage /opt/docker
 
 # This will set the vinyldns version, make sure to have this in config... version = ${?VINYLDNS_VERSION}
-ARG VINYLDNS_VERSION
 ENV VINYLDNS_VERSION=$VINYLDNS_VERSION
 
 RUN mkdir -p /opt/docker/lib_extra
