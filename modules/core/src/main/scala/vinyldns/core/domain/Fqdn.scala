@@ -17,7 +17,6 @@
 package vinyldns.core.domain
 
 import DomainHelpers.{ensureTrailingDot, removeWhitespace}
-import org.slf4j.LoggerFactory
 
 case class Fqdn(fqdn: String) {
 
