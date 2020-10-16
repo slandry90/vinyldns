@@ -91,9 +91,9 @@ class SqsMessageQueueProvider extends MessageQueueProvider {
         .map {
           case (key, secret) =>
             new AWSStaticCredentialsProvider(
-              logger.error(s"in awsstatic")
               new BasicAWSCredentials(key, secret)
             )
+            logger.error(s"in awsstatic")
         }
         .headOption
         .getOrElse {
