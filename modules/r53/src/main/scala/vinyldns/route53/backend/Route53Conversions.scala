@@ -73,6 +73,7 @@ trait Route53Conversions {
     val logger = LoggerFactory.getLogger("toVinylRecordSet")
     logger.info(r53RecordSet.getName)
     logger.info(zoneName)
+    logger.info(Fqdn.merge(r53RecordSet.getName, zoneName).zoneRecordName(zoneName))
     RecordSet(
       zoneId,
       Fqdn.merge(r53RecordSet.getName, zoneName).zoneRecordName(zoneName),

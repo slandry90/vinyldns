@@ -1,7 +1,7 @@
 FROM hseeberger/scala-sbt:11.0.8_1.3.13_2.11.12 as builder
 
 ARG BRANCH=r53-testing
-ARG VINYLDNS_VERSION=steve-82
+ARG VINYLDNS_VERSION=steve-83
 
 RUN git clone -b ${BRANCH} --single-branch --depth 1 https://github.com/slandry90/vinyldns.git /vinyldns
 
