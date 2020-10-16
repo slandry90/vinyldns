@@ -93,7 +93,6 @@ class SqsMessageQueueProvider extends MessageQueueProvider {
             new AWSStaticCredentialsProvider(
               new BasicAWSCredentials(key, secret)
             )
-          }
         .headOption
         .getOrElse {
           new DefaultAWSCredentialsProviderChain()
