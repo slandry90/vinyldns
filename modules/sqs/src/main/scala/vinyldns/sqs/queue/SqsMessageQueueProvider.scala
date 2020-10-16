@@ -91,13 +91,16 @@ class SqsMessageQueueProvider extends MessageQueueProvider {
         .map {
           case (key, secret) =>
             new AWSStaticCredentialsProvider(
+              logger.error(s"in awsstatic")
               new BasicAWSCredentials(key, secret)
             )
         }
         .headOption
         .getOrElse {
+          logger.error(s"in getorelse")
           new DefaultAWSCredentialsProviderChain()
         }
+        logger.error(s"cred provider: [$credProvider]")
       sqsAsyncClientBuilder.withCredentials(credProvider).build()
     }
 
