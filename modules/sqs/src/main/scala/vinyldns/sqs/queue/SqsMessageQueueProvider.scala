@@ -76,7 +76,7 @@ class SqsMessageQueueProvider extends MessageQueueProvider {
           s"queue name: ${sqsMessageQueueSettings.queueName}"
       )
 
-      val sqsAsyncClientBuilder = AmazonSQSAsyncClientBuilder.standard()
+      val sqsAsyncClientBuilder = AmazonSQSAsyncClientBuilder.standard
       sqsAsyncClientBuilder.withEndpointConfiguration(
         new EndpointConfiguration(
           sqsMessageQueueSettings.serviceEndpoint,
