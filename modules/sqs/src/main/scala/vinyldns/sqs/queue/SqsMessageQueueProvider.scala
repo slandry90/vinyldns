@@ -97,7 +97,6 @@ class SqsMessageQueueProvider extends MessageQueueProvider {
         }
         .headOption
         .getOrElse {
-          logger.error(s"in getorelse")
           new DefaultAWSCredentialsProviderChain()
         }
         logger.error(s"cred provider: [$credProvider]")
