@@ -98,6 +98,8 @@ class SqsMessageQueueProvider extends MessageQueueProvider {
         .getOrElse {
           new DefaultAWSCredentialsProviderChain()
         }
+        logger.error(s"cred check: [$sqsMessageQueueSettings.accessKey]")
+        logger.error(s"cred check: [$sqsMessageQueueSettings.secretKey]")
         logger.error(s"cred provider: [$credProvider]")
       sqsAsyncClientBuilder.withCredentials(credProvider).build()
     }
