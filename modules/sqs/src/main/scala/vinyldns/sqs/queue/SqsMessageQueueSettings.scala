@@ -18,7 +18,7 @@ package vinyldns.sqs.queue
 
 case class SqsMessageQueueSettings(
     accessKey: Option[String],
-    secretKey: Option[String]
+    secretKey: Option[String],
     serviceEndpoint: String,
     signingRegion: String,
     queueName: String
