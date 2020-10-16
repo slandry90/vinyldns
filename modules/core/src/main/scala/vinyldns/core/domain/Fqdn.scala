@@ -57,7 +57,7 @@ case object Fqdn {
     val zname = dropTrailingDot(zoneName)
 
     val zIndex = rname.lastIndexOf(zname)
-    if (zIndex > 0) {
+    if (zIndex >= 0) {
       // zone name already there, or record name = zone name, so just return
       Fqdn(rname + ".")
     } else {
